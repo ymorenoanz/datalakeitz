@@ -73,7 +73,8 @@ function Card({archivo})
               <img className="br-100 h3 w3 dib" alt={archivo.nombrearchivo} src={process.env.PUBLIC_URL + archivo.rutadocumento} />
               </TableCell>
       
-                  <TableCell align="right"> <a href={archivo.rutadocumento} target="_blank">Descargar</a> </TableCell>
+              <TableCell align="right"> <a href={archivo.rutadocumento} target="_blank">Descargar</a> </TableCell>
+
               <TableCell style={{ width: 160 }} align="right">
                 {archivo.categoria}
               </TableCell>
