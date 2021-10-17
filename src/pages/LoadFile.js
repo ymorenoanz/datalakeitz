@@ -114,7 +114,7 @@ function LoadFile()
       subcategoria: textsubcat,
       subsubcategoria: textsubsubcat,
       archivo: file.name,
-      rutadocumento: "https://repositorioitz171848-dev.s3.us-east-2.amazonaws.com/public/"+file.name,
+      rutadocumento: "https://datalakeitz200223-dev.s3.us-east-2.amazonaws.com/public//public/"+file.name,
     });
     fetchNotes();
   }

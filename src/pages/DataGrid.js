@@ -142,10 +142,10 @@ export default function DataGrid()
           <TableRow>
             <TableCell align="right">Nombre</TableCell>
             <TableCell align="right">Tipo de archivo</TableCell>
-            <TableCell align="right">Tamaño</TableCell>
             <TableCell align="right">Ruta</TableCell>
             <TableCell align="right">Categoria</TableCell>
             <TableCell align="right">Subcategoria</TableCell>
+            <TableCell align="right">Subsubcategoria</TableCell>
           </TableRow>
         </TableHead>
 
@@ -167,6 +167,9 @@ export default function DataGrid()
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
                 {note.subcategoria}
+              </TableCell>
+              <TableCell style={{ width: 160 }} align="right">
+                {note.subsubcategoria}
               </TableCell>
             </TableRow>
           ))}

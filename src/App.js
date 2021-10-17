@@ -11,6 +11,7 @@ import Menu from './components/Menu';
 import Home from './pages/Home';
 import Footer from './components/Footer';
 import DataGrid from './pages/DataGrid';
+import Buscador from './pages/Buscador';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
          <Route path={'/Home'} component={Home}></Route>
          <Route path={'/LoadFile'} component={LoadFile}></Route>
          <Route path={'/DataGrid'} component={DataGrid}></Route>
+         <Route path={'/Buscador'} component={Buscador}></Route>
          <Route path={'/Logout'} component={AmplifySignOut}></Route>
          </div>
   
