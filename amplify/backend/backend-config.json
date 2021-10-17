@@ -25,5 +25,29 @@
         ]
       }
     }
+  },
+  "api": {
+    "createnote": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 365,
+              "description": ""
+            }
+          },
+          "additionalAuthenticationProviders": []
+        }
+      }
+    }
+  },
+  "storage": {
+    "datalakeitz": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
+    }
   }
 }

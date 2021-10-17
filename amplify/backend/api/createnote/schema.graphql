@@ -1,0 +1,15 @@
+type Todo @model 
+{
+    id: ID!
+  nombrearchivo: String!
+  tipoarchivo: String
+  archivo: String
+  tamanoarchivo: Float
+  categoria: String
+  subcategoria: String
+  subsubcategoria: String
+  rutadocumento: String
+  autor: String
+  resumendocumento: String
+  palabrasclave: [String!]
+}
