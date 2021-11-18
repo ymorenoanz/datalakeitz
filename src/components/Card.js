@@ -11,6 +11,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TableFooter from '@material-ui/core/TableFooter';
+import { blue } from '@material-ui/core/colors';
 
 const useStyles = makeStyles({
     table: {
@@ -41,25 +42,32 @@ function Card({archivo})
       await API.graphql({ query: listTodos, variables: { input: { id } } });
     }
 
-  return(
-      <Container maxWidth="sm">
-        <TableContainer component={Paper}>
-      <Table className={classes.table} size="small" aria-label="a dense table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="right">Nombre</TableCell>
-            <TableCell align="right">Tipo de archivo</TableCell>
-            <TableCell align="right">Archivo</TableCell>
-            <TableCell align="right">Descargar</TableCell>
-            <TableCell align="right">Categoria</TableCell>
-            <TableCell align="right">Subcategoria</TableCell>
-            <TableCell align="right">Subsubcategoria</TableCell>
-            <TableCell align="right">Autor</TableCell>
-            <TableCell align="right">Resumen</TableCell>
-            <TableCell align="right">Palabras clave</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
+    //const filteredVideos = notas.map(archivo =>  <video autoplay controls alt={archivo.nombrearchivo} src={process.env.PUBLIC_URL + archivo.rutadocumento} width="640" height="480" />);
+  
+  return (
+    <Container maxWidth="sm">
+      <TableContainer component={Paper}>
+        <Table
+          className={classes.table}
+          size="small"
+          aria-label="a dense table"
+        >
+          <TableHead>
+            <TableRow>
+              <TableCell align="right">Nombre</TableCell>
+              <TableCell align="right">Tipo de archivo</TableCell>
+              <TableCell align="right">Imagen</TableCell>
+              <TableCell align="right">Video</TableCell>
+              <TableCell align="right">Descargar</TableCell>
+              <TableCell align="right">Categoria</TableCell>
+              <TableCell align="right">Subcategoria</TableCell>
+              <TableCell align="right">Subsubcategoria</TableCell>
+              <TableCell align="right">Autor</TableCell>
+              <TableCell align="right">Resumen</TableCell>
+              <TableCell align="right">Palabras clave</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
             <TableRow key={archivo.id}>
               <TableCell component="th" scope="row">
                 {archivo.nombrearchivo}
@@ -70,10 +78,32 @@ function Card({archivo})
               </TableCell>
 
               <TableCell style={{ width: 160 }} align="right">
-              <img className="br-100 h3 w3 dib" alt={archivo.nombrearchivo} src={process.env.PUBLIC_URL + archivo.rutadocumento} />
+                <img
+                  className="br-100 h3 w3 dib"
+                  alt={archivo.nombrearchivo}
+                  src={process.env.PUBLIC_URL + archivo.rutadocumento}
+                />
               </TableCell>
-      
-              <TableCell align="right"> <a href={archivo.rutadocumento} target="_blank">Descargar</a> </TableCell>
+
+              <TableCell style={{ width: 160 }} align="right">
+                <video loop autoPlay muted width="640" height="480">
+                  <source
+                    src={process.env.PUBLIC_URL + archivo.rutadocumento}
+                    type="video/mp4"
+                  />
+                  <source src={process.env.PUBLIC_URL + archivo.rutadocumento} type="video/webm" />
+                  <source src={process.env.PUBLIC_URL + archivo.rutadocumento} type="video/ogg" />
+                  <img src="imagen.png" alt="Video no soportado" />
+                  Su navegador no soporta contenido multimedia.
+                </video>
+              </TableCell>
+
+              <TableCell align="right">
+                {" "}
+                <a href={archivo.rutadocumento} target="_blank">
+                  Descargar
+                </a>{" "}
+              </TableCell>
 
               <TableCell style={{ width: 160 }} align="right">
                 {archivo.categoria}
@@ -94,14 +124,11 @@ function Card({archivo})
                 {archivo.palabrasclave}
               </TableCell>
             </TableRow>
-        </TableBody>
-        <TableFooter>
-
-        </TableFooter>
-      </Table>
-    </TableContainer>
-      </Container>
-   
+          </TableBody>
+          <TableFooter></TableFooter>
+        </Table>
+      </TableContainer>
+    </Container>
   );
 }
 

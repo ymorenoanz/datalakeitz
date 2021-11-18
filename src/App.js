@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
 import {BrowserRouter as Router, Route} from 'react-router-dom';
@@ -12,8 +11,10 @@ import Home from './pages/Home';
 import Footer from './components/Footer';
 import DataGrid from './pages/DataGrid';
 import Buscador from './pages/Buscador';
+import BuscarPalabraClave from './pages/BuscarPalabraClave';
 
-function App() {
+function App() 
+{
   return (
       <div className="App">
         <header>
@@ -26,10 +27,16 @@ function App() {
   
        <Router>
          <div>
+         <Route path='/BuscarPalabraClave/:palabrasclave' exact render={({ match }) => 
+         {
+           return <BuscarPalabraClave miParamUrl={match.params.palabrasclave} />     
+         }}/>
+
          <Route path={'/Home'} component={Home}></Route>
          <Route path={'/LoadFile'} component={LoadFile}></Route>
          <Route path={'/DataGrid'} component={DataGrid}></Route>
          <Route path={'/Buscador'} component={Buscador}></Route>
+         <Route path={'/BuscarPalabraClave'} component={BuscarPalabraClave}></Route>
          <Route path={'/Logout'} component={AmplifySignOut}></Route>
          </div>
   

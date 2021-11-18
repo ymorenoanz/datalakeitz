@@ -11,5 +11,5 @@ type Todo @model
   rutadocumento: String
   autor: String
   resumendocumento: String
-  palabrasclave: [String!]
+  palabrasclave: String
 }

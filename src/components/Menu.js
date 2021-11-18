@@ -32,9 +32,9 @@ class Menu extends React.Component
 								<li className="nav-item">
 									<a className="nav-link" href="Buscador">Buscador</a>
 								</li>
-                                
+
 								<li className="nav-item">
-									<a className="nav-link" href="DataGrid">Descargar archivos</a>
+									<a className="nav-link" href="BuscarPalabraClave">Buscar por palabras clave</a>
 								</li>
 
 								<li>

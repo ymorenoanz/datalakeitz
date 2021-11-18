@@ -161,7 +161,9 @@ export default function DataGrid()
               <TableCell style={{ width: 160 }} align="right">
                 {note.tipoarchivo}
               </TableCell>
-                  <TableCell align="right"> <a href={note.rutadocumento} target="_blank">Descargar</a> </TableCell>
+              <TableCell align="right"> 
+              <a href={note.rutadocumento} target="_blank">Descargar</a> 
+              </TableCell>
               <TableCell style={{ width: 160 }} align="right">
                 {note.categoria}
               </TableCell>

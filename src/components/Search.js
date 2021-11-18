@@ -5,6 +5,9 @@ import { listTodos } from "../graphql/queries";
 import { API } from 'aws-amplify';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { useParams } from "react-router";
+import ReactDOM from "react-dom";
 
 function Search({ details }) 
 {
@@ -12,17 +15,20 @@ function Search({ details })
   const [searchField, setSearchField] = useState("");
   const [notas, setNotas] = useState([]);
 
-  useEffect(() => {
+  useEffect(() => 
+  {
     fetchNotes();
   }, []);
 
 
-  async function fetchNotes() {
+  async function fetchNotes() 
+  {
     const apiData = await API.graphql({ query: listTodos });
     setNotas(apiData.data.listTodos.items);
   }
 
-  async function listTodo({ id }) {
+  async function listTodo({ id }) 
+  {
     const newNotesArray = notas.filter(nota => nota.id !== id);
     setNotas(newNotesArray);
     await API.graphql({ query: listTodos, variables: { input: { id } } });
@@ -36,33 +42,27 @@ function Search({ details })
   var selectsubsubcat = document.getElementById('subsubcategoria');
   //var textsubsubcat = selectsubsubcat.options[selectsubsubcat.selectedIndex].text;
 
-  const separarPalabras = notas.map(nota => {
-    //var cadena = nota.palabrasclave;
-    //var index = cadena.lenght;
-    //var primeraParte = cadena.slice(0, index/2);
-    //var segundaParte = cadena.slice(index/2,index);
-    //var palabra="nosql";
+ /* const separarPalabras = notas.map(nota => {
+    let cadena = document.getElementById("palabrasclave");
+    let palabras= cadena.textContent;
+    var index = palabras.length;
+    var primeraParte = palabras.slice(0, index/2);
+    var segundaParte = palabras.slice(index/2,index);
     //var index = cadena.indexOf(palabra);
     //{notas.map(note => note.palabrasclave !== palabrasclave}
-  });
-
- 
+  }); */
+  
   const filteredFiles = notas.filter(
     nota => {
-      //var cadena = nota.palabrasclave;
-      //var index = cadena.length;
-      //var primeraParte = cadena.slice(0, index/2);
-      //var segundaParte = cadena.slice(index/2,index);
       return (
         nota.nombrearchivo.toLowerCase().includes(searchField.toLowerCase()) ||
         nota.tipoarchivo.toLowerCase().includes(searchField.toLowerCase()) ||
         nota.categoria.toLowerCase().includes(searchField.toLowerCase()) ||
         nota.subcategoria.toLowerCase().includes(searchField.toLowerCase()) ||
         nota.subsubcategoria.toLowerCase().includes(searchField.toLowerCase()) ||
-        nota.palabrasclave &&
-        nota.palabrasclave.indexOf(searchField.toLowerCase()) > -1 
-
-        //cadena.toLowerCase().includes(searchField.toLowerCase())
+        nota.palabrasclave && nota.palabrasclave.indexOf(searchField.toLowerCase()) > -1 
+        //primeraParte.toLowerCase().includes(searchField.toLowerCase()) && 
+        //segundaParte.toLowerCase().includes(searchField.toLowerCase())
       );
     }
   );
@@ -71,7 +71,8 @@ function Search({ details })
     setSearchField(e.target.value);
   };
 
-  function searchList() {
+  function searchList() 
+  {
     return (
       <Scroll>
         <SearchList filteredFiles={filteredFiles} />
@@ -89,25 +90,6 @@ function Search({ details })
       <div class="row">
         <div class="col-4">
 
-          <div className="form-group">
-            <label htmlFor="example3">Palabras clave</label>
-            <br />
-            
-            <ul>
-              {notas.map(note => <li key={note.id}><a>{note.palabrasclave}</a></li>)}
-            </ul>
-            <input
-                className="pa3 bb br3 grow b--none bg-lightest-blue ma3"
-                type="search"
-                placeholder="Busca por palabra clave"
-                onChange={handleChange}
-              />
-          </div>
-
-        </div>
-
-        <div class="col-4">
-
         <div className="form-group">
             <label htmlFor="example3">Nombre de archivo</label>
             <br />
@@ -120,7 +102,12 @@ function Search({ details })
               />
             </form>
           </div>
-          
+                 
+
+        </div>
+
+        <div class="col-4">
+
           <div className="form-group">
             <label htmlFor="example3">Tipo de archivo</label>
             <br />
